@@ -43,7 +43,7 @@ public class Application {
 		reviewService.addReview(users.get(1), movies.get(0), 5, movies);
 		reviewService.addReview(users.get(2), movies.get(0), 9, movies);
 		//reviewService.addReview(users.get(0), movies.get(0), 10, movies); //multiple reviews not allowed exception
-		// reviewService.addReview(users.get(2), movies.get(3), 5); //movie not yet released exception
+		//reviewService.addReview(users.get(2), movies.get(3), 5); //movie not yet released exception
 		reviewService.addReview(users.get(0), movies.get(1), 5, movies);
 		reviewService.addReview(users.get(0), movies.get(5), 7, movies);
 		reviewService.addReview(users.get(1), movies.get(4), 6, movies);

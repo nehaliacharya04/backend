@@ -21,10 +21,6 @@ public class Review {
 	public Movie getMovie() {
 		return movie;
 	}
-
-	public void setMovie(Movie movie) {
-		this.movie = movie;
-	}
 	
 	public int getScore() {
 		return score;
