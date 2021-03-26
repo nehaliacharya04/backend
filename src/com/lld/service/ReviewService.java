@@ -19,8 +19,8 @@ public class ReviewService implements IReviewImpl {
 	public void addReview(Person user, Movie movie, int score, List<Movie> movies) throws MovieReviewException {
 		if (movie.getYear() >= Calendar.getInstance().get(Calendar.YEAR))
 			throw new MovieReviewException(MOVIE_YET_TO_RELEASE);
-		Review review = new Review(user, movie);
-		review.setScore(score);
+		Review review = new Review(movie);
+		review.setScore(user, score);
 		if (user.getReviews() == null || user.getReviews().isEmpty()) {
 			List<Review> reviewList = new ArrayList<>();
 			reviewList.add(review);
@@ -36,8 +36,8 @@ public class ReviewService implements IReviewImpl {
 				user.setReviews(reviews);
 			} else {
 				user.setType(TypeOfUsers.CRITIC);
-				Review critreview = new Review(user, movie);
-				critreview.setScore(score);
+				Review critreview = new Review(movie);
+				critreview.setScore(user, score);
 				reviews.add(critreview);
 			}
 		}

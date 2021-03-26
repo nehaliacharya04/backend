@@ -3,14 +3,14 @@ package com.lld.model;
 public class Review {
 	private int score;
 	private Movie movie;
-	private Person user;
+	//private Person user;
 
-	public Review(Person user, Movie movie) {
+	public Review( Movie movie) {
 		this.movie = movie;
-		this.user = user;
+		//this.user = user;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Person user, int score) {
 		if(user.getType().equals(TypeOfUsers.CRITIC)) {
 			this.score = score * 2;
 		}
