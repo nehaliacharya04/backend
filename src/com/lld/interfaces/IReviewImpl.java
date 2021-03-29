@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -20,19 +19,19 @@ public interface IReviewImpl {
 
 	public void addReview(Person user, Movie movie, int score, List<Movie> movies) throws MovieReviewException;
 
-	public void getTopMoviesByYearByViewer(int n, int year, List<Person> user);
+	public void getTopMoviesByViewer(int n, int year, List<Person> user);
 
-	public void getTopMoviesByGenreByViewer(int n, List<Person> users, String genre);
+	public void getTopMoviesByViewer(int n, List<Person> users, String genre);
 
-	public void getTopMoviesByYearsByCritics(int n, List<Person> users, int year);
+	public void getTopMoviesByCritics(int n, List<Person> users, int year);
 
-	public void getTopMoviesByGenreByCritics(int n, List<Person> users, String genre);
+	public void getTopMoviesByCritics(int n, List<Person> users, String genre);
 
-	public double getAverageReviewScoreByYear(List<Person> users, int year);
+	public double getAverageReviewScore(List<Person> users, int year);
 
-	public double getAverageReviewScoreByGenre(List<Person> users, String genre);
+	public double getAverageReviewScore(List<Person> users, String entity);
 
-	public double getAverageReviewScoreForMovie(List<Person> users, String movie);
+	//public double getAverageReviewScoreForMovie(List<Person> users, String movie);
 
 	default void printTreeMap(int n, TreeMap<String, Integer> map) {
 		LinkedHashMap<String, Integer> sortedMap = map.entrySet().stream().sorted(Entry.comparingByValue())

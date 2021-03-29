@@ -48,12 +48,12 @@ public class Application {
 		reviewService.addReview(users.get(0), movies.get(5), 7, movies);
 		reviewService.addReview(users.get(1), movies.get(4), 6, movies);
 		
-		reviewService.getAverageReviewScoreByYear(users, 2006);
-		reviewService.getAverageReviewScoreByGenre(users, "Drama");
-		reviewService.getAverageReviewScoreForMovie(users, "Don");
-		reviewService.getTopMoviesByYearByViewer(1, 2006, users);
-		reviewService.getTopMoviesByGenreByViewer(2, users, "Drama");
-		reviewService.getTopMoviesByYearsByCritics(3, users, 2006);
-		reviewService.getTopMoviesByGenreByCritics(1, users, "Romance");
+		reviewService.getAverageReviewScore(users, 2006);
+		reviewService.getAverageReviewScore(users, "Drama");
+		reviewService.getAverageReviewScore(users, "Don");
+		reviewService.getTopMoviesByViewer(1, 2006, users);
+		reviewService.getTopMoviesByViewer(2, users, "Drama");
+		reviewService.getTopMoviesByCritics(3, users, 2006);
+		reviewService.getTopMoviesByCritics(1, users, "Romance");
 	}
 }

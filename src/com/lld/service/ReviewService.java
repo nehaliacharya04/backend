@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.TreeMap;
 
+import com.lld.enums.TypeOfUsers;
 import com.lld.exception.MovieReviewException;
 import com.lld.interfaces.IReviewImpl;
 import com.lld.model.Movie;
 import com.lld.model.Person;
 import com.lld.model.Review;
-import com.lld.model.TypeOfUsers;
 
 public class ReviewService implements IReviewImpl {
 
@@ -44,26 +44,7 @@ public class ReviewService implements IReviewImpl {
 	}
 
 	@Override
-	public double getAverageReviewScoreForMovie(List<Person> users, String movie) {
-		double sum = 0, count = 0;
-		for (Person user : users) {
-			List<Review> reviews = user.getReviews();
-			for (Review r : reviews) {
-				if (r.getMovie().getName().equals(movie)) {
-					count++;
-					sum += r.getScore();
-				}
-			}
-		}
-		System.out.print("Average Review Score by Movie name is: ");
-		System.out.printf("%.2f", sum / count);
-		System.out.println(" ratings");
-		System.out.println();
-		return sum / count;
-	}
-
-	@Override
-	public double getAverageReviewScoreByYear(List<Person> users, int year) {
+	public double getAverageReviewScore(List<Person> users, int year) {
 		double sum = 0, count = 0;
 		for (Person user : users) {
 			List<Review> reviews = user.getReviews();
@@ -82,18 +63,21 @@ public class ReviewService implements IReviewImpl {
 	}
 
 	@Override
-	public double getAverageReviewScoreByGenre(List<Person> users, String genre) {
+	public double getAverageReviewScore(List<Person> users, String entity) {
 		double sum = 0, count = 0;
 		for (Person user : users) {
 			List<Review> reviews = user.getReviews();
 			for (Review r : reviews) {
-				if (r.getMovie().getGenre().equals(genre)) {
+				if (r.getMovie().getGenre().equals(entity)) {
+					count++;
+					sum += r.getScore();
+				} else if(r.getMovie().getName().equals(entity)) {
 					count++;
 					sum += r.getScore();
 				}
 			}
 		}
-		System.out.print("Average Review Score by Genre is: ");
+		System.out.print("Average Review Score by " + entity + " is: ");
 		System.out.printf("%.2f", sum / count);
 		System.out.println(" ratings");
 		System.out.println();
@@ -101,7 +85,7 @@ public class ReviewService implements IReviewImpl {
 	}
 
 	@Override
-	public void getTopMoviesByYearByViewer(int n, int year, List<Person> users) {
+	public void getTopMoviesByViewer(int n, int year, List<Person> users) {
 		TreeMap<String, Integer> map = new TreeMap<>(Collections.reverseOrder());
 		for (Person user : users) {
 			List<Review> reviews = user.getReviews();
@@ -122,7 +106,7 @@ public class ReviewService implements IReviewImpl {
 	}
 
 	@Override
-	public void getTopMoviesByGenreByViewer(int n, List<Person> users, String genre) {
+	public void getTopMoviesByViewer(int n, List<Person> users, String genre) {
 		TreeMap<String, Integer> map = new TreeMap<>(Collections.reverseOrder());
 		for (Person user : users) {
 			List<Review> reviews = user.getReviews();
@@ -143,7 +127,7 @@ public class ReviewService implements IReviewImpl {
 	}
 
 	@Override
-	public void getTopMoviesByYearsByCritics(int n, List<Person> users, int year) {
+	public void getTopMoviesByCritics(int n, List<Person> users, int year) {
 		TreeMap<String, Integer> map = new TreeMap<>(Collections.reverseOrder());
 		for (Person user : users) {
 			List<Review> reviews = user.getReviews();
@@ -164,7 +148,7 @@ public class ReviewService implements IReviewImpl {
 	}
 
 	@Override
-	public void getTopMoviesByGenreByCritics(int n, List<Person> users, String genre) {
+	public void getTopMoviesByCritics(int n, List<Person> users, String genre) {
 		TreeMap<String, Integer> map = new TreeMap<>(Collections.reverseOrder());
 		for (Person user : users) {
 			List<Review> reviews = user.getReviews();
